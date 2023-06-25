@@ -38,7 +38,7 @@ trait IndexTransformer
 
                     $return = array_merge(
                         $return,
-                        ['name' => \Lang::has('world::cities.' . $city->name)? trans('world::cities.' . $city->name) :trans('world::cities.' . $city->name)]
+                        ['name' => \Lang::has('world::cities.' . $city->name) ? trans('world::cities.' . $city->name) : $city->name]
                     );
 
                     return $return;
