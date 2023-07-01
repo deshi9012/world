@@ -57,7 +57,9 @@ class RefreshWorldData extends Command
 		];
 		// drop a table if it exists
 		foreach ($worldTables as $worldTable) {
+            Schema::disableForeignKeyConstraints();
 			Schema::dropIfExists(config($worldTable));
+            Schema::enableForeignKeyConstraints();
 		}
 		// delete the world entries in the migrations table
 		// get a list of the world migration files
