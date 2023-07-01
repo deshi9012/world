@@ -112,6 +112,7 @@ class SeedAction extends Seeder
 			Schema::disableForeignKeyConstraints();
 			app($this->modules[$module]['class'])->truncate();
 			Schema::enableForeignKeyConstraints();
+
 			// import json data.
 			$moduleSourcePath = __DIR__ . '/../../resources/json/' . $module . '.json';
 
@@ -135,7 +136,10 @@ class SeedAction extends Seeder
 	 */
 	private function initCountries(): void
 	{
-		app(Models\Country::class)->truncate();
+        // truncate countries database table.
+        Schema::disableForeignKeyConstraints();
+        app(Models\Country::class)->truncate();
+        Schema::enableForeignKeyConstraints();
 
 		$this->countries['data'] = json_decode(File::get(__DIR__ . '/../../resources/json/countries.json'), true);
 
